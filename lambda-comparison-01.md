@@ -26,8 +26,8 @@ private static <T> Function<Function<T, BigDecimal>, BigDecimal> sumProperty(T i
 }
 
 // --- B ---
-private static InvoicePosition merge(InvoicePosition fst, InvoicePosition snd) {
-    InvoicePosition res = new InvoicePosition();
+private static TransactionPosition merge(TransactionPosition fst, TransactionPosition snd) {
+    TransactionPosition res = new TransactionPosition();
     res.setId(fst.getId());
     res.setLevel(fst.getLevel());
     res.setCommission(totalOf(fst.getCommission(), snd.getCommission()));
@@ -47,8 +47,8 @@ private static BigDecimal totalOf(BigDecimal fst, BigDecimal snd) {
 }
 
 // --- C ---
-private static InvoicePosition merge(InvoicePosition fst, InvoicePosition snd) {
-    InvoicePosition res = new InvoicePosition();
+private static TransactionPosition merge(TransactionPosition fst, TransactionPosition snd) {
+    TransactionPosition res = new TransactionPosition();
     res.setId(fst.getId());
     res.setLevel(fst.getLevel());
     res.setCommission(ADDITION.apply(fst.getCommission()).apply(snd.getCommission()));
