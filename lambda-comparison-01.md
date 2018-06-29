@@ -1,4 +1,4 @@
-**I like C, no argue**
+**I like B, no argue**
 
 ```
 // --- A ---
