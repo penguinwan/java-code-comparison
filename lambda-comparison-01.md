@@ -35,15 +35,14 @@ private static TransactionPosition merge(TransactionPosition fst, TransactionPos
     return res;
 }
 private static BigDecimal totalOf(BigDecimal fst, BigDecimal snd) {
-    BigDecimal c = new BigDecimal(fst.doubleValue());
-    BigDecimal d = new BigDecimal(fst.doubleValue());
-    if (c == null) {
-        c = BigDecimal.ZERO;
+    return valueOf(fst).add(valueOf(snd));
+}
+private static valueOf(BigDecimal value) {
+    if(value == null) {
+        return BigDecimal.ZERO;
+    } else {
+        return value;
     }
-    if (d == null) {
-        d = BigDecimal.ZERO;
-    }
-    return c.add(d);
 }
 
 // --- C ---
@@ -54,16 +53,15 @@ private static TransactionPosition merge(TransactionPosition fst, TransactionPos
     res.setCommission(ADDITION.apply(fst.getCommission()).apply(snd.getCommission()));
     res.setOverride(ADDITION.apply(fst.getOverride()).apply(snd.getOverride()));
     return res;
-}
-private static Function<BigDecimal, Function<BigDecimal, BigDecimal>> ADDITION = a -> b -> {
-    BigDecimal c = new BigDecimal(a.doubleValue());
-    BigDecimal d = new BigDecimal(b.doubleValue());
-    if (c == null) {
-        c = BigDecimal.ZERO;
-    }
-    if (d == null) {
-        d = BigDecimal.ZERO;
-    }
-    return c.add(d);
 };
+private static Function<BigDecimal, Function<BigDecimal, BigDecimal>> ADDITION = a -> b -> {
+    return VALUE_OF.apply(c).add(VALUE_OF.apply(d));
+};
+private static Function<BigDecimal, BigDecimal> VALUE_OF = value -> {
+    if(value == null) {
+        return BigDecimal.ZERO;
+    } else {
+        return value;
+    }
+}
 ```
